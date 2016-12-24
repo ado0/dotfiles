@@ -1,0 +1,19 @@
+conky.config = {
+	background = false,
+	cpu_avg_samples = 2,
+	net_avg_samples = 2,
+	no_buffers = true,
+	out_to_stderr = false,
+	update_interval = 1.0,
+	uppercase = false,
+	use_spacer = 'none',
+};
+
+conky.text = 
+[[
+ W: ${wireless_link_qual_perc wlp3s0} \
+ Bat: ${battery_short}  ${laptop_mode} \
+ RAM: ${mem} \
+ CPU: ${cpu}% ${freq}MHz ${acpitemp} °C \
+ ${time %d.%m. %H:%M}
+]];
