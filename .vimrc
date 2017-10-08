@@ -12,13 +12,12 @@ filetype off					"
 call plug#begin('~/.vim/plug')
  Plug 'chrisbra/Colorizer'			"Show the color you write
  Plug 'DrawIt'					"ASCII art
- Plug 'garbas/vim-snipmate'			"Insers preconfigured snips
- Plug 'honza/vim-snippets'			"Snippets for snipmate
+"Plug 'garbas/vim-snipmate'			"Insers preconfigured snips
  Plug 'kien/rainbow_parentheses.vim',		"Color your parentheses
  Plug 'majutsushi/tagbar', {'for': 'c'}		"Code browsing using ctags
  Plug 'MarcWeber/vim-addon-mw-utils' 		"Used by snipmate
  Plug 'ScrollColors'				"Vim color chooser 
- Plug 'scrooloose/syntastic'			"Spell check
+ Plug 'scrooloose/syntastic',{'for': ['c', 'cpp']}	 "Spell check
  Plug 'terryma/vim-multiple-cursors'		"Sublimes multi-cursor
  Plug 'tomtom/tcomment_vim'			"Code commenting made easier
  Plug 'tomtom/tlib_vim'				"Used by snipmate
@@ -28,6 +27,11 @@ call plug#begin('~/.vim/plug')
  Plug 'Shougo/vimproc.vim'			"Needed for Unite (manual inst)
  Plug 'vivien/vim-addon-linux-coding-style', {'for': 'c'} "Kernel coding
  Plug 'sirtaj/vim-openscad', {'for': 'scad'}	"Syntax for openscad
+ Plug 'SirVer/ultisnips'			"Snippets
+ Plug 'honza/vim-snippets'			"Snippets for snipmate
+ Plug 'valloric/youcompleteme'			"Completion
+ Plug 'ervandew/supertab'			"Make YCM and ultisnips compat
+ Plug 'Conque-GDB'
 call plug#end()
 filetype plugin indent on			"End vim-plug call, use plugins
 
@@ -65,6 +69,10 @@ filetype plugin indent on			"End vim-plug call, use plugins
  "vim-polygot
   let g:LatexBox_loaded_matchparen = 1	"Disable matchparen on latex
 
+ "YCM
+ let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+ let g:ycm_show_diagnostics_ui = 0 "disable youcompleteme syntax checker
+ set completeopt-=preview "disabe preview window"
  
 "" Basic settings
 syntax on
@@ -122,6 +130,16 @@ nnoremap k gk			"|
 vnoremap j gj			"|
 vnoremap k gk			"|
 inoremap <S-TAB> <C-X><C-O>
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 "" Functions
 "undofile - This allows you to use undos after exiting and restarting

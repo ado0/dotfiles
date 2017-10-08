@@ -5,7 +5,7 @@
 ### Includes ###
 #{{{ 
 #Syntax highlight plugin
-# source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # vi cursor mode status
 #source ~/.zsh/vi_cursor_mode.zsh
@@ -14,6 +14,7 @@
 ### Startup ###
 #{{{
 print -Pn "\e]2;%~\a"
+#printf '\33]50;%s\007' "xft:monospace:size=10"
 #fortune | cowsay -f `ls -1 /usr/share/cows/ | sort -R | head -1` -n
 #echo "15" | angled
 #}}}
@@ -168,7 +169,7 @@ grmlcomp() {
     zstyle ':completion:*:history-words'   stop yes
 
     # match uppercase from lowercase
-    zstyle ':completion:*'                 matcher-list 'm:{a-z}={A-Z}'
+    #zstyle ':completion:*'                 matcher-list 'm:{a-z}={A-Z}'
 
     # separate matches into groups
     zstyle ':completion:*:matches'         group 'yes'
