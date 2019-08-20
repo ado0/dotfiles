@@ -7,14 +7,20 @@
 #Syntax highlight plugin
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+
 # vi cursor mode status
 #source ~/.zsh/vi_cursor_mode.zsh
 #}}}
 
 ### Startup ###
 #{{{
+#transset -a .85 && clear
 print -Pn "\e]2;%~\a"
-#printf '\33]50;%s\007' "xft:monospace:size=10"
+if [ ! -f ~/.tmp_dir ]
+then 
+    echo $HOME >> ~/.tmp_dir
+fi
+cd $(cat ~/.tmp_dir) 
 #fortune | cowsay -f `ls -1 /usr/share/cows/ | sort -R | head -1` -n
 #echo "15" | angled
 #}}}
@@ -30,6 +36,16 @@ alias nb="newsbeuter -q"
 alias pd='popd'
 alias p="proxychains"	
 alias w2l="iconv -f windows-1252 -t utf-8 $1 > $2"
+alias vimdiff='nvim -d'
+alias vim='nvim'
+alias passado='PASSWORD_STORE_DIR=~/.pass/ado pass'
+alias passmenuado='PASSWORD_STORE_DIR=~/.pass/ado passmenu'
+alias passmarvel='PASSWORD_STORE_DIR=~/.pass/marvel pass'
+alias passmenumarvel='PASSWORD_STORE_DIR=~/.pass/marvel passmenu'
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/sbin:/sbin:/bin:/opt/texlive/2017/bin/x86_64-linux:~/ellcc/bin:/home/ado/esp/xtensa-esp32-elf/bin
+export ESP_ROOT=/home/ado/git/esp-open-sdk
+export IDF_PATH=/home/ado/esp/esp-idf
+alias mips-ecc="ecc -target mips32r2el-linux"
 for c in cp rm chmod chown rename; do 
     alias $c="$c -v" 
 done
@@ -133,6 +149,7 @@ setopt share_history			# share history betwen sessions
 #         press ^xh (control-x h) for getting tags in context; ^x? (control-x ?) to run complete_debug with trace output
 grmlcomp() {
     # TODO: This could use some additional information
+    # source /home/ado/.config/zsh/pass_compl.zsh
 
     # Make sure the completion system is initialised
     (( ${+_comps} )) || return 1
@@ -305,3 +322,4 @@ PS1=$'%{\e[1;34m%}%n %{\e[0m%}at %{\e[0;33m%}%M %{\e[0m%}in %{\e[1;32m%}%~
 #}}}
 
 # vim:sw=4:ft=zsh:fdm=marker
+alias ll='ls -la'
